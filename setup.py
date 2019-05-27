@@ -12,7 +12,7 @@ Contains an experimental curses application for reading the timeline.
 setup(
     name='toot',
     version='0.21.0',
-    description='Mastodon CLI client',
+    description='Mastodon CLI client - TEST',
     long_description=long_description.strip(),
     author='Ivan Habunek',
     author_email='ivan@habunek.com',
