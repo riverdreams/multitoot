@@ -139,7 +139,7 @@ curses_args = common_timeline_args + [
 AUTH_COMMANDS = [
     Command(
         name="login",
-        description="Log into a mastodon instance using your browser (recommended)",
+        description="Log into a mastodon instance using your browser (recommended) TESTEDIT",
         arguments=[instance_arg, scheme_arg],
         require_auth=False,
     ),
