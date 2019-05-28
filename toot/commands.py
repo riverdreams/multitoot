@@ -10,6 +10,14 @@ from toot.utils import assert_domain_exists, multiline_input, EOF_KEY
 
 def get_timeline_generator(app, user, args):
     # Make sure tag, list and public are not used simultaneously
+    
+    # print(args.instance)
+    if args.instance:
+        instance = args.instance.split(",")
+    else:
+        instance = app.instance
+    print("instance(s): ", instance)
+    
     if len([arg for arg in [args.tag, args.list, args.public] if arg]) > 1:
         raise ConsoleError("Only one of --public, --tag, or --list can be used at one time.")
 
@@ -18,13 +26,23 @@ def get_timeline_generator(app, user, args):
 
     if args.instance and not (args.public or args.tag):
         raise ConsoleError("The --instance option is only valid alongside --public or --tag.")
-
+    
     if args.public:
-        instance = args.instance or app.instance
-        return api.public_timeline_generator(instance, local=args.local, limit=args.count)
+        if isinstance(instance, list):
+            ret = []
+            for inst in instance:
+                ret.append(api.public_timeline_generator(inst, local=args.local, limit=args.count))
+            return ret
+        else:
+            return api.public_timeline_generator(instance, local=args.local, limit=args.count)
     elif args.tag:
-        instance = args.instance or app.instance
-        return api.tag_timeline_generator(instance, args.tag, local=args.local, limit=args.count)
+        if isinstance(instance, list):
+            ret = []
+            for inst in instance:
+                ret.append(api.tag_timeline_generator(instance, args.tag, local=args.local, limit=args.count))
+            return ret
+        else:
+            return api.tag_timeline_generator(instance, args.tag, local=args.local, limit=args.count)
     elif args.list:
         return api.timeline_list_generator(app, user, args.list, limit=args.count)
     else:
@@ -33,19 +51,38 @@ def get_timeline_generator(app, user, args):
 
 def timeline(app, user, args):
     generator = get_timeline_generator(app, user, args)
-
+    
     while(True):
-        try:
-            items = next(generator)
-        except StopIteration:
-            print_out("That's all folks.")
-            return
+        if isinstance(generator, list):
+            items = []
+            for gen in generator:
+                try:
+                    #items.append(next(gen))    this one keeps them as seperate entries in items
+                    items.extend(next(gen))     # this one just adds all the posts to items
+                except StopIteration:
+                    print_out("Reached end of a timeline")
+            
+            items = sorted(items, key=lambda k: k['id'], reverse=True)
+            if args.reverse:
+                items = reversed(items)
+            
+            #for item in items:                 #old, this goes with the items.append above
+            #    print_timeline(item)
+            #    print("---END OF POSTS FROM INSTANCE---")
+            
+            
+        else:
+            try:
+                items = next(generator)
+            except StopIteration:
+                print_out("That's all folks.")
+                return
 
-        if args.reverse:
-            items = reversed(items)
-
+            if args.reverse:
+                items = reversed(items)
+        
         print_timeline(items)
-
+            
         if args.once:
             break
 

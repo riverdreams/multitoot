@@ -102,7 +102,7 @@ common_timeline_args = [
     }),
     (["-i", "--instance"], {
         "type": str,
-        "help": "mastodon instance from which to read (public and tag timelines only)",
+        "help": "mastodon instance(s) from which to read (public and tag timelines only). to read from multiple instances, list them seperated by commas, without spaces. for example: \"-i mastodon.social,mastodon.xyz\"",
     }),
     (["--list"], {
         "type": int,

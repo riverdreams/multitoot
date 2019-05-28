@@ -720,12 +720,22 @@ class TimelineApp:
         self.redraw_after_selection_change(old_index, new_index)
 
     def fetch_next(self):
-        try:
-            self.footer.draw_message("Loading toots...", Color.BLUE)
-            statuses = next(self.status_generator)
-        except StopIteration:
-            return None
-
+        if isinstance(self.status_generator, list):
+            statuses = []
+            for gen in self.status_generator:
+                try:
+                    self.footer.draw_message("Loading toots...", Color.BLUE)
+                    statuses.extend(next(gen))
+                except StopIteration:
+                    continue
+            statuses = sorted(statuses, key=lambda k: k['id'], reverse=True)
+        else:
+            try:
+                self.footer.draw_message("Loading toots...", Color.BLUE)
+                statuses = next(self.status_generator)
+            except StopIteration:
+                return None
+        
         for status in statuses:
             self.statuses.append(parse_status(status))
 
