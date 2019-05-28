@@ -100,6 +100,11 @@ common_timeline_args = [
         "default": False,
         "help": "show only statuses from local instance (public and tag timelines only)",
     }),
+    (["-xRT", "--rivertest"], {
+        "action": "store_true",
+        "default": False,
+        "help": "a test arg",
+    }),
     (["-i", "--instance"], {
         "type": str,
         "help": "mastodon instance from which to read (public and tag timelines only)",

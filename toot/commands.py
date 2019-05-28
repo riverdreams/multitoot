@@ -10,6 +10,8 @@ from toot.utils import assert_domain_exists, multiline_input, EOF_KEY
 
 def get_timeline_generator(app, user, args):
     # Make sure tag, list and public are not used simultaneously
+    if args.rivertest:
+        print_out("it worked!")
     if len([arg for arg in [args.tag, args.list, args.public] if arg]) > 1:
         raise ConsoleError("Only one of --public, --tag, or --list can be used at one time.")
 
