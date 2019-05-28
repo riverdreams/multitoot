@@ -6,6 +6,12 @@ NOTE: the console command for this is "toot", if you want to change that, change
 What do I mean by "multi-instance timeline merging"?
 well, I and a few other people wished that Mastodon was more of a reddit-like thing where you could subscribe to an instance, like how you can subscribe to subreddits. I decided to make this functionality client-side, because it's fairly easy.
 
+stuff i have to do still:
+--get rid of duplicate toots
+--multi-account management
+
+might leave multi-account management for when i make a multi-instance version of a graphical client though
+
 for more info about toot see https://github.com/ihabunek/toot
 
 forked by river, email me @ riverdreams@pm.me if needed
