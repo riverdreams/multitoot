@@ -100,13 +100,9 @@ common_timeline_args = [
         "default": False,
         "help": "show only statuses from local instance (public and tag timelines only)",
     }),
-    (["-xRT", "--rivertest"], {
-        "type": int,
-        "help": "a test arg",
-    }),
     (["-i", "--instance"], {
         "type": str,
-        "help": "mastodon instance from which to read (public and tag timelines only)",
+        "help": "mastodon instance(s) from which to read (public and tag timelines only). to read from multiple instances, list them seperated by commas, without spaces. for example: \"-i mastodon.social,mastodon.xyz\"",
     }),
     (["--list"], {
         "type": int,

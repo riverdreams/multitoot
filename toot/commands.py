@@ -11,10 +11,6 @@ from toot.utils import assert_domain_exists, multiline_input, EOF_KEY
 def get_timeline_generator(app, user, args):
     # Make sure tag, list and public are not used simultaneously
     
-    if args.rivertest:
-        print("hi")
-        print(args.rivertest)
-    
     # print(args.instance)
     if args.instance:
         instance = args.instance.split(",")
@@ -65,6 +61,8 @@ def timeline(app, user, args):
                     items.extend(next(gen))     # this one just adds all the posts to items
                 except StopIteration:
                     print_out("Reached end of a timeline")
+            
+            items = sorted(items, key=lambda k: k['id'], reverse=True)
             if args.reverse:
                 items = reversed(items)
             
@@ -72,7 +70,6 @@ def timeline(app, user, args):
             #    print_timeline(item)
             #    print("---END OF POSTS FROM INSTANCE---")
             
-            items = sorted(items, key=lambda k: k['id'], reverse=True)
             
         else:
             try:
