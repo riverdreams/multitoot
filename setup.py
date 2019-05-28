@@ -10,16 +10,16 @@ Contains an experimental curses application for reading the timeline.
 """
 
 setup(
-    name='toot',
-    version='0.21.0',
-    description='Mastodon CLI client - TEST',
+    name='multitoot',
+    version='0.21.0_0',
+    description='Mastodon CLI client with multi-instance timeline merging',
     long_description=long_description.strip(),
-    author='Ivan Habunek',
-    author_email='ivan@habunek.com',
-    url='https://github.com/ihabunek/toot/',
+    author='Ivan Habunek, riverdreams',
+    author_email='ivan@habunek.com, riverdreams@pm.me',
+    url='https://github.com/riverdreams/multitoot/',
     project_urls={
         'Documentation': 'https://toot.readthedocs.io/en/latest/',
-        'Issue tracker': 'https://github.com/ihabunek/toot/issues/',
+        'Issue tracker': 'https://github.com/riverdreams/multitoot/issues/',
     },
     keywords='mastodon toot',
     license='GPLv3',

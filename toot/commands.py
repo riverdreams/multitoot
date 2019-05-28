@@ -45,6 +45,8 @@ def timeline(app, user, args):
 
         if args.reverse:
             items = reversed(items)
+        
+        print(items[0])
 
         print_timeline(items)
 

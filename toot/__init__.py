@@ -9,5 +9,5 @@ User = namedtuple('User', ['instance', 'username', 'access_token'])
 
 DEFAULT_INSTANCE = 'mastodon.social'
 
-CLIENT_NAME = 'toot - a Mastodon CLI client - forked by riverdreams'
-CLIENT_WEBSITE = 'https://github.com/riverdreams/toot'
+CLIENT_NAME = 'multitoot - a Mastodon CLI client with multi-instance timeline merging'
+CLIENT_WEBSITE = 'https://github.com/riverdreams/multitoot'
