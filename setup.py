@@ -10,8 +10,8 @@ Contains an experimental curses application for reading the timeline.
 """
 
 setup(
-    name='multitoot',
-    version='0.21.0_0',
+    name='toot',
+    version='0.21.0',
     description='Mastodon CLI client with multi-instance timeline merging',
     long_description=long_description.strip(),
     author='Ivan Habunek, riverdreams',

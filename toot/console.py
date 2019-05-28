@@ -101,8 +101,7 @@ common_timeline_args = [
         "help": "show only statuses from local instance (public and tag timelines only)",
     }),
     (["-xRT", "--rivertest"], {
-        "action": "store_true",
-        "default": False,
+        "type": int,
         "help": "a test arg",
     }),
     (["-i", "--instance"], {
